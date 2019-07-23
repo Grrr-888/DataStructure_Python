@@ -51,7 +51,7 @@ def ReverseString(word, start, end):
         start, end = end, start
 
     while(start < end):
-        word_list[start-1 if start - 1 >=0 else 0], word_list[end-1] = word_list[end-1], word_list[start-1 if start - 1 >=0 else 0]
+        word_list[start], word_list[end-1] = word_list[end-1], word_list[start]
         start = start + 1
         end = end - 1
 
@@ -80,7 +80,6 @@ def LeftRotateSwap(word, k):
 if __name__ == '__main__':
 
     word = 'This is only for test purpose!!'
-    print(word)
 
     print(LeftRotateExhaustive(word,15))
     print(LeftRotateCopy(word, 15))
