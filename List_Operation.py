@@ -55,6 +55,32 @@ class List:
             head_new.pNext = cur_node
             cur_node = prev_node.pNext
 
+    def divide(self, value):
+
+        left_dummy = Node(None)
+        right_dummy = Node(None)
+
+        if self.head == None:
+            return
+
+        leftCur = left_dummy
+        rightCur = right_dummy
+        pNode = self.head
+
+        while pNode != None:
+
+            if pNode.val < value:
+                leftCur.pNext = pNode
+                leftCur = pNode
+            elif pNode.val >= value:
+                rightCur.pNext = pNode
+                rightCur = pNode
+            
+            pNode = pNode.pNext
+        
+        leftCur.pNext = right_dummy.pNext
+        rightCur.pNext = None
+
     def output(self):
 
         node = self.head
@@ -71,13 +97,15 @@ if __name__ == '__main__':
     lst = List()
 
     lst.addNode(1)
-    lst.addNode(2)
-    lst.addNode(3)
     lst.addNode(4)
+    lst.addNode(3)
+    lst.addNode(2)
     lst.addNode(5)
+    lst.addNode(2)
 
     lst.output()
 
-    lst.reverse(2, 3)
+    # lst.reverse(2,4)
+    lst.divide(3)
 
     lst.output()
