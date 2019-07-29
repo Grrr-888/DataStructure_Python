@@ -81,6 +81,61 @@ class List:
         leftCur.pNext = right_dummy.pNext
         rightCur.pNext = None
 
+
+    def addList(self, lst_other):
+
+        if None == lst_other.head:
+            return None
+
+        lst_result = List()
+        lst_result_cur = None
+        tmp_Node = None
+
+        lst_self_cur = self.head
+        lst_other_cur = lst_other.head
+
+        carry = False
+        carryNext = False
+
+        while True:
+
+            if None == lst_self_cur and None == lst_other_cur:
+                break
+
+            if None == lst_self_cur:
+                lst_result_cur.pNext = lst_other_cur
+                break
+            
+            if None == lst_other_cur:
+                lst_result_cur.pNext = lst_self_cur
+                break
+
+            val = int(lst_self_cur.val) + int(lst_other_cur.val)
+
+            if val >= 10:
+                val = val - 10
+                carryNext = True
+
+            tmp_Node = Node(val)
+            if True == carry:
+                tmp_Node.val = tmp_Node.val + 1
+
+            if lst_result.head == None:
+                lst_result.head = tmp_Node
+                lst_result_cur = lst_result.head
+            else:
+                lst_result_cur.pNext = tmp_Node
+                lst_result_cur = lst_result_cur.pNext
+
+            lst_self_cur = lst_self_cur.pNext
+            lst_other_cur = lst_other_cur.pNext
+            carry = carryNext
+            carryNext = False
+
+
+        lst_result.tail = tmp_Node
+        return lst_result
+
     def output(self):
 
         node = self.head
@@ -104,8 +159,25 @@ if __name__ == '__main__':
     lst.addNode(2)
 
     lst.output()
-
-    # lst.reverse(2,4)
-    lst.divide(3)
+    lst.reverse(2,4)
 
     lst.output()
+
+    lst.divide(3)
+    lst.output()
+
+    lst_one = List()
+    lst_two = List()
+
+    lst_one.addNode(2)
+    lst_one.addNode(4)
+    lst_one.addNode(3)
+
+    lst_two.addNode(5)
+    lst_two.addNode(6)
+    lst_two.addNode(4)
+    lst_two.addNode(6)
+
+    lst_result = lst_one.addList(lst_two)
+    if not None == lst_result:
+        lst_result.output()
