@@ -81,7 +81,6 @@ class List:
         leftCur.pNext = right_dummy.pNext
         rightCur.pNext = None
 
-
     def addList(self, lst_other):
 
         if None == lst_other.head:
@@ -136,6 +135,17 @@ class List:
         lst_result.tail = tmp_Node
         return lst_result
 
+    def removeDuplicate(self):
+        pPre = self.head
+        pCur = pPre.pNext
+
+        while True and pCur:
+            if pPre.val == pCur.val:
+                pPre.pNext = pCur.pNext
+                #delete pCur, no needed
+            pPre = pPre.pNext
+            pCur = pPre.pNext
+
     def output(self):
 
         node = self.head
@@ -144,9 +154,9 @@ class List:
             node = node.pNext
 
 
-if __name__ == '__main__':
+def unit_test():
+
     # node = Node(1)
-    #
     # print(node.val)
 
     lst = List()
@@ -181,3 +191,18 @@ if __name__ == '__main__':
     lst_result = lst_one.addList(lst_two)
     if not None == lst_result:
         lst_result.output()
+
+if __name__ == '__main__':
+    lst_t = List()
+
+    lst_t.addNode(1)
+    lst_t.addNode(2)
+    lst_t.addNode(2)
+    lst_t.addNode(3)
+    lst_t.addNode(4)
+    lst_t.addNode(4)
+    lst_t.addNode(5)
+
+    lst_t.output()
+    lst_t.removeDuplicate()
+    lst_t.output()
