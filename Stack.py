@@ -103,6 +103,20 @@ def ParseLongestParentheses(str_line):
         
     return max_length
 
+def ParseLongestParentheses_one(str_line):
+    #only '(' and ')'
+    stk = Stack()
+    str_lst = list(str_line)
+    max_length = 0
+
+    for i in range(len(str_lst)):
+        if '(' == str_lst[i]:
+            stk.push(i)
+        elif stk.length() != 0:
+            max_length = max(max_length, i - stk.top() + 1)
+            stk.pop()
+
+    return max_length
 
 def unit_test():
     stk = Stack()
@@ -116,6 +130,6 @@ def unit_test():
 
 if __name__ == '__main__':
 
-    str_line = '(()())'
+    str_line = '(()'
 
-    print(ParseLongestParentheses(str_line))
+    print(ParseLongestParentheses_one(str_line))
