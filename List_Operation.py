@@ -110,14 +110,14 @@ class List:
                 break
 
             val = int(lst_self_cur.val) + int(lst_other_cur.val)
+            if carry == True:
+                val = val + 1
 
             if val >= 10:
                 val = val - 10
                 carryNext = True
 
             tmp_Node = Node(val)
-            if True == carry:
-                tmp_Node.val = tmp_Node.val + 1
 
             if lst_result.head == None:
                 lst_result.head = tmp_Node
@@ -131,6 +131,9 @@ class List:
             carry = carryNext
             carryNext = False
 
+        if carry == True:
+            tmp_Node = Node(1)
+            lst_result_cur.pNext = tmp_Node
 
         lst_result.tail = tmp_Node
         return lst_result
@@ -181,22 +184,22 @@ def unit_test():
     # node = Node(1)
     # print(node.val)
 
-    lst = List()
+    # lst = List()
 
-    lst.addNode(1)
-    lst.addNode(4)
-    lst.addNode(3)
-    lst.addNode(2)
-    lst.addNode(5)
-    lst.addNode(2)
+    # lst.addNode(1)
+    # lst.addNode(4)
+    # lst.addNode(3)
+    # lst.addNode(2)
+    # lst.addNode(5)
+    # lst.addNode(2)
 
-    lst.output()
-    lst.reverse(2,4)
+    # lst.output()
+    # lst.reverse(2,4)
 
-    lst.output()
+    # lst.output()
 
-    lst.divide(3)
-    lst.output()
+    # lst.divide(3)
+    # lst.output()
 
     lst_one = List()
     lst_two = List()
@@ -207,39 +210,41 @@ def unit_test():
 
     lst_two.addNode(5)
     lst_two.addNode(6)
-    lst_two.addNode(4)
     lst_two.addNode(6)
+
 
     lst_result = lst_one.addList(lst_two)
     if not None == lst_result:
         lst_result.output()
 
     
-    lst_t = List()
+    # lst_t = List()
 
-    lst_t.addNode(1)
-    lst_t.addNode(2)
-    lst_t.addNode(2)
-    lst_t.addNode(3)
-    lst_t.addNode(4)
-    lst_t.addNode(4)
-    lst_t.addNode(5)
+    # lst_t.addNode(1)
+    # lst_t.addNode(2)
+    # lst_t.addNode(2)
+    # lst_t.addNode(3)
+    # lst_t.addNode(4)
+    # lst_t.addNode(4)
+    # lst_t.addNode(5)
 
-    lst_t.output()
-    lst_t.removeDuplicate()
-    lst_t.output()
+    # lst_t.output()
+    # lst_t.removeDuplicate()
+    # lst_t.output()
 
 if __name__ == '__main__':
     lst_t = List()
 
-    lst_t.addNode(1)
-    lst_t.addNode(2)
-    lst_t.addNode(2)
-    lst_t.addNode(3)
-    lst_t.addNode(4)
-    lst_t.addNode(4)
-    lst_t.addNode(5)
+    # lst_t.addNode(1)
+    # lst_t.addNode(2)
+    # lst_t.addNode(2)
+    # lst_t.addNode(3)
+    # lst_t.addNode(4)
+    # lst_t.addNode(4)
+    # lst_t.addNode(5)
 
-    lst_t.output()
-    lst_t.removeDuplicate_all()
-    lst_t.output()
+    # lst_t.output()
+    # lst_t.removeDuplicate_all()
+    # lst_t.output()
+
+    unit_test()
