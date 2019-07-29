@@ -64,7 +64,46 @@ def ParseParentheses(str_line):
     
     return True
 
+def ParseLongestParentheses(str_line):
+
+    mapper = {}
+    mapper['(']= ')'
+    mapper['['] = ']'
+    mapper['{'] = '}'
+
+    valid_list = ['(',')','{','}','[',']']
+
+    stk = Stack()
+
+    str_lst = list(str_line)
+
+    max_length = 0
+    cur_length = 0
+
+    for str_word in str_lst:
+        tmp_length = 0
+
+        if str_word in valid_list:
+            if str_word in mapper:
+                stk.push(str_word)
+            elif mapper[stk.top()] == str_word: #matched #need to match now
+                    stk.pop()
+                    cur_length = cur_length + 2
+                    tmp_length = cur_length
+                    
+                    if stk.length() == 0:
+                        cur_length = 0
+
+            else: #not matched
+                tmp_length = cur_length
+                cur_length = 0
+
+            if tmp_length > max_length:
+                max_length = tmp_length
         
+    return max_length
+
+
 def unit_test():
     stk = Stack()
     stk.push(1)
@@ -77,6 +116,6 @@ def unit_test():
 
 if __name__ == '__main__':
 
-    str_line = '(){}[][{())}]'
+    str_line = '(()())'
 
-    print(ParseParentheses(str_line))
+    print(ParseLongestParentheses(str_line))
