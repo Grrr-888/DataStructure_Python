@@ -146,6 +146,28 @@ class List:
             pPre = pPre.pNext
             pCur = pPre.pNext
 
+    def removeDuplicate_all(self):
+
+        pDummy_head = Node(None)
+        pDummy_head.pNext = self.head
+        pPre = self.head
+        pCur = pPre.pNext
+
+        while True and pCur:
+            if pPre.val == pCur.val:
+                pTmp = pPre
+                while not None == pTmp and pTmp.val == pCur.val:
+                    pTmp = pTmp.pNext
+                
+                pDummy_head.pNext = pTmp
+                pPre = pDummy_head.pNext
+                pCur = pPre.pNext
+            
+            else:
+                pDummy_head = pDummy_head.pNext
+                pPre = pPre.pNext
+                pCur = pCur.pNext
+
     def output(self):
 
         node = self.head
@@ -192,7 +214,7 @@ def unit_test():
     if not None == lst_result:
         lst_result.output()
 
-if __name__ == '__main__':
+    
     lst_t = List()
 
     lst_t.addNode(1)
@@ -205,4 +227,19 @@ if __name__ == '__main__':
 
     lst_t.output()
     lst_t.removeDuplicate()
+    lst_t.output()
+
+if __name__ == '__main__':
+    lst_t = List()
+
+    lst_t.addNode(1)
+    lst_t.addNode(2)
+    lst_t.addNode(2)
+    lst_t.addNode(3)
+    lst_t.addNode(4)
+    lst_t.addNode(4)
+    lst_t.addNode(5)
+
+    lst_t.output()
+    lst_t.removeDuplicate_all()
     lst_t.output()
