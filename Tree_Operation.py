@@ -1,23 +1,6 @@
 #coding=utf-8
 
-class Node:
-    
-    val = None
-    lChild = None
-    rChild = None
-    parent = None
-    height = None
-
-    def __init__(self, val):
-        self.val = val
-        self.lChild = None
-        self.rChild = None
-        self.parent = None
-        self.height = None
-    
-    def output(self):
-        print(self.val, self.lChild, self.rChild, self.parent, self.height)
-
+from Tree_Node import Tree_Node
 
 class SearchTree:
 
@@ -30,7 +13,7 @@ class SearchTree:
             if node.lChild != None:
                 self._insert(node.lChild, val)
             else:
-                node_tmp = Node(val)
+                node_tmp = Tree_Node(val)
                 node.lChild = node_tmp
                 node_tmp.parent = node
         elif val == node.val:
@@ -39,12 +22,12 @@ class SearchTree:
             if node.rChild != None:
                 self._insert(node.rChild, val)
             else:
-                node_tmp = Node(val)
+                node_tmp = Tree_Node(val)
                 node.rChild = node_tmp
                 node_tmp.parent = node
 
     def insertNode(self, val):
-        node = Node(val)
+        node = Tree_Node(val)
 
         if self.root == None:
             self.root = node
@@ -52,10 +35,8 @@ class SearchTree:
         else:
             self._insert(self.root, val)
 
-
     def searchVal(self, val):
         self.__search(self.root, val)
-
 
     def __search(self, node, val):
         if val == node.val:
@@ -85,7 +66,6 @@ class SearchTree:
         
         print('-'*10)
 
-
     def __output(self,node):
 
         print(node.val)
@@ -104,7 +84,6 @@ class SearchTree:
             print('node doesn\'t exist')
 
         self.adjustTree(node)
-
     
     def adjustTree(self,  node):
 
@@ -143,7 +122,7 @@ class SearchTree:
                 while rNode != None:
                     rNode = rNode.lChild
                 
-                node_temp = Node(rNode.val)
+                node_temp = Tree_Node(rNode.val)
 
                 node_temp.lChild = node.lChild
                 node_temp.rChild = node.rChild
@@ -154,7 +133,7 @@ class SearchTree:
                 while rNode != None:
                     rNode = rNode.rChild
                 
-                node_temp = Node(rNode.val)
+                node_temp = Tree_Node(rNode.val)
 
                 node_temp.lChild = node.lChild
                 node_temp.rChild = node.rChild
@@ -174,8 +153,7 @@ class SearchTree:
         node.val = newVal
 
 
-
-if __name__ == '__main__':
+def main():
 
     tree = SearchTree()
     tree.insertNode('3')
@@ -189,3 +167,5 @@ if __name__ == '__main__':
     tree.deleteVal('5')
     tree.output()
 
+if __name__ == '__main__':
+    main()
