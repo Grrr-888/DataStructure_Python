@@ -1,16 +1,6 @@
 # encoding = utf8
 
-class Node:
-    val = None
-    pNext = None
-
-    def __init__(self, value):
-        self.val = value
-
-    def output(self):
-        print(self.val)
-
-
+from List_Node import List_Node
 
 class List:
     head = None
@@ -22,7 +12,7 @@ class List:
 
     def addNode(self, value):
 
-        node = Node(value)
+        node = List_Node(value)
 
         if None == self.head:
             self.head = node
@@ -38,7 +28,7 @@ class List:
         if start > end:
             start, end = end, start
 
-        dummy_node = Node(None)
+        dummy_node = List_Node(None)
         dummy_node.pNext = self.head
         prev_node = dummy_node
 
@@ -57,8 +47,8 @@ class List:
 
     def divide(self, value):
 
-        left_dummy = Node(None)
-        right_dummy = Node(None)
+        left_dummy = List_Node(None)
+        right_dummy = List_Node(None)
 
         if self.head == None:
             return
@@ -117,7 +107,7 @@ class List:
                 val = val - 10
                 carryNext = True
 
-            tmp_Node = Node(val)
+            tmp_Node = List_Node(val)
 
             if lst_result.head == None:
                 lst_result.head = tmp_Node
@@ -132,7 +122,7 @@ class List:
             carryNext = False
 
         if carry == True:
-            tmp_Node = Node(1)
+            tmp_Node = List_Node(1)
             lst_result_cur.pNext = tmp_Node
 
         lst_result.tail = tmp_Node
@@ -151,7 +141,7 @@ class List:
 
     def removeDuplicate_all(self):
 
-        pDummy_head = Node(None)
+        pDummy_head = List_Node(None)
         pDummy_head.pNext = self.head
         pPre = self.head
         pCur = pPre.pNext
@@ -178,28 +168,27 @@ class List:
             print(node.val)
             node = node.pNext
 
-
 def unit_test():
 
-    # node = Node(1)
-    # print(node.val)
+    node = List_Node(1)
+    print(node.val)
 
-    # lst = List()
+    lst = List()
 
-    # lst.addNode(1)
-    # lst.addNode(4)
-    # lst.addNode(3)
-    # lst.addNode(2)
-    # lst.addNode(5)
-    # lst.addNode(2)
+    lst.addNode(1)
+    lst.addNode(4)
+    lst.addNode(3)
+    lst.addNode(2)
+    lst.addNode(5)
+    lst.addNode(2)
 
-    # lst.output()
-    # lst.reverse(2,4)
+    lst.output()
+    lst.reverse(2,4)
 
-    # lst.output()
+    lst.output()
 
-    # lst.divide(3)
-    # lst.output()
+    lst.divide(3)
+    lst.output()
 
     lst_one = List()
     lst_two = List()
@@ -218,33 +207,37 @@ def unit_test():
         lst_result.output()
 
     
-    # lst_t = List()
-
-    # lst_t.addNode(1)
-    # lst_t.addNode(2)
-    # lst_t.addNode(2)
-    # lst_t.addNode(3)
-    # lst_t.addNode(4)
-    # lst_t.addNode(4)
-    # lst_t.addNode(5)
-
-    # lst_t.output()
-    # lst_t.removeDuplicate()
-    # lst_t.output()
-
-if __name__ == '__main__':
     lst_t = List()
 
-    # lst_t.addNode(1)
-    # lst_t.addNode(2)
-    # lst_t.addNode(2)
-    # lst_t.addNode(3)
-    # lst_t.addNode(4)
-    # lst_t.addNode(4)
-    # lst_t.addNode(5)
+    lst_t.addNode(1)
+    lst_t.addNode(2)
+    lst_t.addNode(2)
+    lst_t.addNode(3)
+    lst_t.addNode(4)
+    lst_t.addNode(4)
+    lst_t.addNode(5)
 
-    # lst_t.output()
-    # lst_t.removeDuplicate_all()
-    # lst_t.output()
+    lst_t.output()
+    lst_t.removeDuplicate()
+    lst_t.output()
+
+def main():
+
+    lst_t = List()
+
+    lst_t.addNode(1)
+    lst_t.addNode(2)
+    lst_t.addNode(2)
+    lst_t.addNode(3)
+    lst_t.addNode(4)
+    lst_t.addNode(4)
+    lst_t.addNode(5)
+
+    lst_t.output()
+    lst_t.removeDuplicate_all()
+    lst_t.output()
 
     unit_test()
+
+if __name__ == '__main__':
+    main()
